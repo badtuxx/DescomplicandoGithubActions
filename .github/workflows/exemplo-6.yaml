@@ -23,10 +23,9 @@ jobs:
     - name: Printando a variável no nível do job
       run: echo ${{ env.JOB_VAR }}
 
-    - name: Definindo uma variável no nível do step
+    - name: Definindo e printando uma variável no nível do step
       run: |
         STEP_VAR="Giropops no step-level"
-        echo "STEP_VAR=$STEP_VAR"
 
     - name: Printando a variável no nível do step
-      run: echo ${{ env.STEP_VAR }}
+      run: echo $STEP_VAR
