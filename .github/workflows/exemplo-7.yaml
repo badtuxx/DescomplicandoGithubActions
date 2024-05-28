@@ -1,31 +1,18 @@
+name: Node.js CI
+
 on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      GLOBAL_VAR: "Essa é uma variável global"
-
+    strategy:
+      matrix:
+        node-version: [12, 14, 16]
     steps:
-    - name: Checkout no Repo
-      uses: actions/checkout@v4
-
-    - name: Printando a variável
-      run: echo ${{ env.GLOBAL_VAR }}
-
-    - name: Definindo a variável no nível do job
-      run: |
-        JOB_VAR="Giropops no job-level!"
-        echo "JOB_VAR=$JOB_VAR" >> $GITHUB_ENV
-
-    - name: Printando a variável no nível do job
-      run: echo ${{ env.JOB_VAR }}
-
-    - name: Definindo uma variável no nível do step
-      run: |
-        STEP_VAR="Giropops no step-level"
-        echo "STEP_VAR=$STEP_VAR" >> $GITHUB_ENV
-
-    - name: Printando a variável no nível do step
-      run: echo ${{ env.STEP_VAR }}
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm test
