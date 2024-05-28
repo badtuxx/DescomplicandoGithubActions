@@ -1,0 +1,19 @@
+name: Giropops CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout no Repo
+      uses: actions/checkout@v4
+
+    - name: Run a one-line script
+      run: echo Hello Giropops!
+
+    - name: Run a multi-line script
+      run: |
+        echo Exemplo de mais um step,
+        echo Giropops Strigus Girus.
