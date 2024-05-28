@@ -8,7 +8,7 @@
     - [Exemplo de Workflow YAML](#exemplo-de-workflow-yaml)
 - [Criando um Workflow Simples](#criando-um-workflow-simples)
 - [Eventos que Disparam Workflows](#eventos-que-disparam-workflows)
-- [Ações e Repositórios de Ações](#ações-e-repositórios-de-ações)
+- [Actions e Repositórios de Ações](#actions-e-repositórios-de-ações)
 - [Executores e Ambientes](#executores-e-ambientes)
 - [Segredos e Variáveis de Ambiente](#segredos-e-variáveis-de-ambiente)
 - [Matrizes e Estratégias de Build](#matrizes-e-estratégias-de-build)
@@ -19,9 +19,9 @@
   - [Funções de Contexto](#funções-de-contexto)
   - [Melhorando a Manutenção](#melhorando-a-manutenção)
 - [Actions Personalizadas](#actions-personalizadas)
-  - [Tipos de Ações Personalizadas](#tipos-de-ações-personalizadas)
-  - [Criando uma Ação JavaScript](#criando-uma-ação-javascript)
-  - [Benefícios das Ações Personalizadas](#benefícios-das-ações-personalizadas)
+  - [Tipos de Actions Personalizadas](#tipos-de-actions-personalizadas)
+  - [Criando uma Action JavaScript](#criando-uma-action-javascript)
+  - [Benefícios das Actions Personalizadas](#benefícios-das-actions-personalizadas)
   - [Exemplos de Uso](#exemplos-de-uso)
 - [Tópicos Avançados](#tópicos-avançados)
   - [Minimizar o tempo de execução](#minimizar-o-tempo-de-execução)
@@ -38,7 +38,7 @@ Começaremos com uma Introdução ao GitHub Actions, onde explicaremos o que é 
 
 Depois, você aprenderá a Criar um Workflow Simples, conhecendo a estrutura básica de um workflow e vendo um exemplo prático com o famoso "Hello Giropops!". Também exploraremos os Eventos que Disparam Workflows, como push e pull_request, e como configurá-los.
 
-No tópico de Ações e Repositórios de Ações, explicaremos o que são ações e como encontrar e usar ações da GitHub Marketplace. Em seguida, discutiremos os Executores e Ambientes disponíveis, como Ubuntu, Windows, e MacOS, e como configurar ambientes específicos.
+No tópico de Actions e Repositórios de Actions, explicaremos o que são Actions e como encontrar e usar Actions da GitHub Marketplace. Em seguida, discutiremos os Executores e Ambientes disponíveis, como Ubuntu, Windows, e MacOS, e como configurar ambientes específicos.
 
 Você também aprenderá a usar Segredos e Variáveis de Ambiente para proteger informações sensíveis e definir variáveis de ambiente. Exploraremos o uso de Matrizes e Estratégias de Build para testar múltiplas configurações e otimizar builds paralelos.
 
@@ -59,9 +59,9 @@ Um dos principais benefícios do GitHub Actions é a sua integração nativa com
 
 Além disso, o GitHub Actions oferece uma ampla gama de executores para diferentes sistemas operacionais, incluindo Ubuntu, Windows e macOS. Isso facilita a criação de ambientes de build consistentes e permite testar aplicações em múltiplas plataformas.
 
-A comunidade GitHub também contribui com um vasto repositório de ações pré-construídas, disponíveis no GitHub Marketplace. Essas ações podem ser facilmente integradas aos workflows, economizando tempo e esforço ao reutilizar soluções já testadas e validadas.
+A comunidade GitHub também contribui com um vasto repositório de Actions pré-construídas, disponíveis no GitHub Marketplace. Essas Actions podem ser facilmente integradas aos workflows, economizando tempo e esforço ao reutilizar soluções já testadas e validadas.
 
-Em resumo, GitHub Actions é uma solução flexível e poderosa para automação de fluxos de trabalho, que se beneficia da integração profunda com o GitHub e da vasta gama de ações disponíveis na comunidade, tornando-o uma escolha ideal para desenvolvedores que buscam eficiência e agilidade em seus processos de desenvolvimento.
+Em resumo, GitHub Actions é uma solução flexível e poderosa para automação de fluxos de trabalho, que se beneficia da integração profunda com o GitHub e da vasta gama de Actions disponíveis na comunidade, tornando-o uma escolha ideal para desenvolvedores que buscam eficiência e agilidade em seus processos de desenvolvimento.
 
 
 
@@ -74,7 +74,7 @@ Noções iniciais sobre GitHub Actions são cruciais para entender como configur
 
 * **Workflows** - São definições de automação que descrevem um processo de integração contínua e entrega contínua (CI/CD). Cada workflow é composto por um ou mais jobs e steps.
 * **Jobs** - Unidades de trabalho que são executadas em um executor. Cada job pode conter múltiplos steps e é executado de forma isolada. Jobs podem ser configurados para rodar em paralelo ou sequencialmente.
-* **Steps** - Comandos individuais que são executados como parte de um job. Steps podem incluir scripts de shell, execução de ações ou comandos de configuração.
+* **Steps** - Comandos individuais que são executados como parte de um job. Steps podem incluir scripts de shell, execução de Actions ou comandos de configuração.
 * **Arquivo YAML de configuração** - Workflows são definidos em arquivos YAML, que são armazenados no diretório `.github/workflows` do repositório. O formato YAML é utilizado por sua simplicidade e legibilidade.
 
 Isso é o que precisamos entender agora, é importante saber para que serve cada um desses conceito que falamos a pouco. Vamos ver isso na prática, acho que é melhor para entender. 
@@ -110,7 +110,7 @@ Neste exemplo, temos um workflow chamado "CI" que é disparado por eventos de pu
 
 
 
-1. **Checkout code** - Usa a ação `actions/checkout@v4` para fazer o checkout do código do repositório.
+1. **Checkout code** - Usa a Action `actions/checkout@v4` para fazer o checkout do código do repositório.
 2. **Run a one-line script** - Executa um comando simples de shell que imprime "Hello, world!".
 3. **Run a multi-line script** - Executa múltiplos comandos de shell que imprimem mensagens.
 
@@ -150,13 +150,13 @@ Vamos detalhar cada seção do arquivo:
 * <code>on</code>: Especifica os eventos que disparam o workflow. No nosso exemplo, o workflow será disparado sempre que houver um <code>push</code> no repositório.
 * <strong><code>jobs</code></strong>: Define um conjunto de tarefas que serão executadas. Cada job pode ter múltiplos <code>steps</code>.
 * <strong><code>runs-on</code></strong>: Especifica o ambiente onde o job será executado. Aqui, estamos usando <code>ubuntu-latest</code> para indicar que o job deve rodar em uma máquina virtual com o Ubuntu.
-* <strong><code>steps</code></strong>: Lista as etapas que compõem o job. Cada etapa pode utilizar uma ação ou executar comandos diretamente.
+* <strong><code>steps</code></strong>: Lista as etapas que compõem o job. Cada etapa pode utilizar uma Action ou executar comandos diretamente.
 
 No exemplo acima, temos duas etapas:
 
 
 
-1. **<code>Checkout repository</code></strong>: Utiliza a ação <code>actions/checkout@v4</code> para fazer o checkout do código do repositório.
+1. **<code>Checkout repository</code></strong>: Utiliza a Action <code>actions/checkout@v4</code> para fazer o checkout do código do repositório.
 2. <strong><code>Run a one-line script</code></strong>: Executa um comando simples que imprime "Hello Giropops!" no console.
 
 Depois de adicionar e commitar este arquivo ao seu repositório, o GitHub Actions automaticamente detectará e executará o workflow quando um <code>push</code> for feito. Você pode verificar a execução do workflow na aba "Actions" do seu repositório no GitHub.
@@ -166,7 +166,7 @@ Este exemplo básico serve como ponto de partida. A partir daqui, você pode adi
 
 ## Eventos que Disparam Workflows
 
-Os eventos que disparam workflows são fundamentais para a automação no GitHub Actions. Eles determinam quando um workflow deve ser executado, com base em ações específicas no repositório ou em eventos externos.
+Os eventos que disparam workflows são fundamentais para a automação no GitHub Actions. Eles determinam quando um workflow deve ser executado, com base em Actions específicas no repositório ou em eventos externos.
 
 Um dos eventos mais comuns é o push. Este evento é disparado sempre que há um push para o repositório. Pode ser configurado para responder a pushes em branches específicos, tags ou até mesmo para ignorar certos padrões.
 
@@ -228,11 +228,11 @@ jobs:
 A flexibilidade dos eventos permite a criação de pipelines de CI/CD altamente personalizados, que podem ser ajustados para atender às necessidades específicas de cada projeto.
 
 
-## Ações e Repositórios de Ações
+## Actions e Repositórios de Ações
 
-As ações são a unidade baásica de execução dentro de um workflow do GitHub Actions. Elas permitem que você automatize tarefas específicas, como executar testes, implantar código, ou realizar verificações de segurança. Existem ações pré-construídas disponíveis no GitHub Marketplace, que podem ser facilmente integradas ao seu workflow.
+As Actions são a unidade baásica de execução dentro de um workflow do GitHub Actions. Elas permitem que você automatize tarefas específicas, como executar testes, implantar código, ou realizar verificações de segurança. Existem Actions pré-construídas disponíveis no GitHub Marketplace, que podem ser facilmente integradas ao seu workflow.
 
-Ações são definidas em arquivos YAML e podem ser reutilizadas em diferentes workflows. Elas podem ser escritas em JavaScript ou como contêineres Docker, permitindo flexibilidade na escolha da tecnologia e ambiente de execução. Aqui está um exemplo básico de como usar uma ação do GitHub Marketplace:
+Ações são definidas em arquivos YAML e podem ser reutilizadas em diferentes workflows. Elas podem ser escritas em JavaScript ou como contêineres Docker, permitindo flexibilidade na escolha da tecnologia e ambiente de execução. Aqui está um exemplo básico de como usar uma Action do GitHub Marketplace:
 
 
 ```yaml
@@ -248,7 +248,7 @@ jobs:
     - name: Checkout no Repo
       uses: actions/checkout@v4
 
-    - name: Run a one-line script
+    - name: Executando um comando
       run: echo "Giropops Strigus Girus!"
 
     - name: Usando uma Action pre-built
@@ -258,9 +258,9 @@ jobs:
 ```
 
 
-No exemplo acima, a ação `actions/setup-node@v4` é usada para configurar o ambiente Node.js. O campo `with` permite passar parâmetros para a ação, como a versão do Node.js a ser usada.
+No exemplo acima, a Action `actions/setup-node@v4` é usada para configurar o ambiente Node.js. O campo `with` permite passar parâmetros para a ação, como a versão do Node.js a ser usada.
 
-Você também pode criar suas próprias ações personalizadas para atender necessidades específicas do seu projeto. Para isso, é necessário definir um repositório de ações, que contém o código e a configuração necessários para a ação. Um exemplo de estrutura de repositório de ação em JavaScript pode ser:
+Você também pode criar suas próprias Actions personalizadas para atender necessidades específicas do seu projeto. Para isso, é necessário definir um repositório de ações, que contém o código e a configuração necessários para a ação. Um exemplo de estrutura de repositório de Action em JavaScript pode ser:
 
 my-action/
 
@@ -274,11 +274,11 @@ No arquivo `action.yml`, você define os metadados da ação, como nome, descri�
 
 
 ```yaml
-name: 'My Custom Action'
-description: 'An example custom action'
+name: 'Minha Action Customizada'
+description: 'Uma Action customizada para fazer algo incrível'
 inputs:
   myInput:
-    description: 'An example input'
+    description: 'A descrição do input'
     required: true
     default: 'default value'
 runs:
@@ -304,7 +304,7 @@ try {
 
 Depois de criar e testar sua ação, você pode publicá-la no GitHub Marketplace para que outros desenvolvedores possam usá-la. Isso envolve marcar uma versão do repositório e criar uma release.
 
-Ao utilizar ações e repositórios de ações, você pode modularizar e compartilhar automações, melhorando a eficiência e a consistência dos seus workflows.
+Ao utilizar Actions e repositórios de ações, você pode modularizar e compartilhar automações, melhorando a eficiência e a consistência dos seus workflows.
 
 
 ## Executores e Ambientes
@@ -514,7 +514,7 @@ Utilizar matrizes e estratégias de build de maneira eficaz pode melhorar signif
 
 O armazenamento em cache e o uso de artefatos são técnicas essenciais para otimizar e gerenciar a eficiência dos workflows no GitHub Actions. Utilizar cache pode reduzir significativamente o tempo de execução ao evitar a repetição de tarefas que consomem muito tempo, como a instalação de dependências.
 
-Para implementar o cache, você pode usar a ação `actions/cache`. Aqui está um exemplo de como configurar o cache para dependências do Node.js:
+Para implementar o cache, você pode usar a Action `actions/cache`. Aqui está um exemplo de como configurar o cache para dependências do Node.js:
 
 
 ```yaml
@@ -540,9 +540,9 @@ jobs:
 ```
 
 
-Neste exemplo, a ação `actions/cache` armazena os módulos Node.js em `~/.npm`, utilizando o arquivo `package-lock.json` para gerar uma chave única. Se o cache existir, ele será restaurado, economizando tempo ao evitar a reinstalação das dependências.
+Neste exemplo, a Action `actions/cache` armazena os módulos Node.js em `~/.npm`, utilizando o arquivo `package-lock.json` para gerar uma chave única. Se o cache existir, ele será restaurado, economizando tempo ao evitar a reinstalação das dependências.
 
-Já os artefatos são usados para armazenar e compartilhar arquivos gerados durante a execução dos workflows. Por exemplo, você pode querer salvar logs, resultados de testes ou builds para referência futura. A ação `actions/upload-artifact` permite fazer isso facilmente:
+Já os artefatos são usados para armazenar e compartilhar arquivos gerados durante a execução dos workflows. Por exemplo, você pode querer salvar logs, resultados de testes ou builds para referência futura. A Action `actions/upload-artifact` permite fazer isso facilmente:
 
 
 ```yaml
@@ -711,23 +711,23 @@ Os gatilhos condicionais são uma ferramenta poderosa para otimizar e controlar 
 
 ## Actions Personalizadas
 
-Uma das funcionalidades mais poderosas do <span style="text-decoration:underline;">GitHub Actions</span> é a capacidade de criar <span style="text-decoration:underline;">Actions Personalizadas</span>. Essas ações permitem que você encapsule e reutilize lógica específica que pode ser compartilhada entre diferentes workflows e projetos.
+Uma das funcionalidades mais poderosas do <span style="text-decoration:underline;">GitHub Actions</span> é a capacidade de criar <span style="text-decoration:underline;">Actions Personalizadas</span>. Essas Actions permitem que você encapsule e reutilize lógica específica que pode ser compartilhada entre diferentes workflows e projetos.
 
 
-### Tipos de Ações Personalizadas
+### Tipos de Actions Personalizadas
 
-Existem três tipos principais de ações personalizadas que você pode criar:
+Existem três tipos principais de Actions personalizadas que você pode criar:
 
 
 
 * **<span style="text-decoration:underline;">Ações Docker</span>** - Executadas dentro de um contêiner Docker, permitindo um ambiente controlado e consistente. Isso é útil quando você precisa de dependências específicas ou um ambiente de execução isolado.
 * **<span style="text-decoration:underline;">Ações JavaScript</span>** - Executadas diretamente no executor, sem a necessidade de um contêiner. São rápidas e ideais para tarefas que podem ser realizadas com bibliotecas disponíveis no Node.js.
-* **<span style="text-decoration:underline;">Ações Composites</span>** - Permitem combinar múltiplos comandos e outras ações em uma única ação. São úteis para agrupar lógica complexa em uma única unidade reutilizável.
+* **<span style="text-decoration:underline;">Ações Composites</span>** - Permitem combinar múltiplos comandos e outras Actions em uma única ação. São úteis para agrupar lógica complexa em uma única unidade reutilizável.
 
 
-### Criando uma Ação JavaScript
+### Criando uma Action JavaScript
 
-Para criar uma ação JavaScript:
+Para criar uma Action JavaScript:
 
 
 
@@ -740,7 +740,7 @@ Para criar uma ação JavaScript:
 
 ```yaml
 name: 'Hello World Action'
-description: 'Uma simples ação de exemplo'
+description: 'Uma simples Action de exemplo'
 inputs:
   who-to-greet:
     description: 'A quem cumprimentar'
@@ -772,7 +772,7 @@ try {
 
 4. Publicação e Uso:
     * Commit e push do código para o repositório.
-    * Utilize a ação em um workflow referenciando o repositório.
+    * Utilize a Action em um workflow referenciando o repositório.
 
 
 ```yaml
@@ -788,13 +788,13 @@ jobs:
           who-to-greet: 'GitHub Actions'
 ```
 
-### Benefícios das Ações Personalizadas
+### Benefícios das Actions Personalizadas
 
 
 
-* **Reutilização**: Encapsular lógica comum em ações facilita a reutilização em múltiplos workflows.
-* **Compartilhamento**: Publicar ações no <span style="text-decoration:underline;">GitHub Marketplace</span> permite que outros desenvolvedores as utilizem.
-* **Manutenção**: Centralizar lógica em ações facilita a manutenção e atualização do código.
+* **Reutilização**: Encapsular lógica comum em Actions facilita a reutilização em múltiplos workflows.
+* **Compartilhamento**: Publicar Actions no <span style="text-decoration:underline;">GitHub Marketplace</span> permite que outros desenvolvedores as utilizem.
+* **Manutenção**: Centralizar lógica em Actions facilita a manutenção e atualização do código.
 
 
 ### Exemplos de Uso
@@ -805,13 +805,13 @@ jobs:
 * **Automação de Tarefas**: Scripts de automação para tarefas repetitivas, como formatação de código ou verificação de segurança.
 * **Integrações**: Conectar workflows com serviços externos via APIs.
 
-Criar e utilizar ações personalizadas amplia significativamente as capacidades de automação no GitHub, permitindo que você adapte os workflows às necessidades específicas do seu projeto.
+Criar e utilizar Actions personalizadas amplia significativamente as capacidades de automação no GitHub, permitindo que você adapte os workflows às necessidades específicas do seu projeto.
 
 ## Tópicos Avançados
 
-No tópico de Actions Personalizadas, abordamos como criar suas próprias ações para reutilizar código e facilitar a automação de tarefas específicas. Isso envolve escrever scripts em JavaScript ou criar contêineres Docker que podem ser executados como parte de um workflow.
+No tópico de Actions Personalizadas, abordamos como criar suas próprias Actions para reutilizar código e facilitar a automação de tarefas específicas. Isso envolve escrever scripts em JavaScript ou criar contêineres Docker que podem ser executados como parte de um workflow.
 
-A integrar ações personalizadas com outros serviços e APIs é uma habilidade valiosa. Por exemplo, você pode configurar uma ação para enviar notificações para um canal do Slack ou atualizar um banco de dados sempre que um novo código for mesclado no repositório.
+A integrar Actions personalizadas com outros serviços e APIs é uma habilidade valiosa. Por exemplo, você pode configurar uma Action para enviar notificações para um canal do Slack ou atualizar um banco de dados sempre que um novo código for mesclado no repositório.
 
 Melhores práticas e otimizações são cruciais para garantir que seus workflows sejam eficientes e seguros. Isso inclui:
 
@@ -848,7 +848,7 @@ Ao abordar a segurança em workflows de automação, é essencial considerar a p
 
 Além disso, é importante restringir o acesso a quem pode modificar os workflows. Apenas colaboradores confiáveis devem ter permissões para editar arquivos de configuração, evitando assim a introdução de código malicioso. Utilizar branch protection rules pode ajudar a garantir que mudanças nos workflows passem por revisões de código antes de serem mescladas.
 
-Outra consideração é a execução de ações de terceiros. Sempre que possível, utilize ações verificadas e de fontes confiáveis. Revise o código-fonte das ações que você incorpora em seus workflows para garantir que não há comportamentos inesperados ou maliciosos. A execução de ações de terceiros em um ambiente isolado, como em contêineres Docker, pode adicionar uma camada extra de segurança.
+Outra consideração é a execução de Actions de terceiros. Sempre que possível, utilize Actions verificadas e de fontes confiáveis. Revise o código-fonte das Actions que você incorpora em seus workflows para garantir que não há comportamentos inesperados ou maliciosos. A execução de Actions de terceiros em um ambiente isolado, como em contêineres Docker, pode adicionar uma camada extra de segurança.
 
 Monitorar e auditar logs de execução também é crucial. Logs detalhados permitem identificar atividades suspeitas e responder rapidamente a incidentes de segurança. Configurar alertas para atividades incomuns pode ajudar a detectar e mitigar ameaças em tempo real.
 
@@ -861,7 +861,7 @@ Manter o código de workflows organizado e bem documentado é essencial para gar
 
 Além disso, dividir workflows complexos em arquivos menores e mais gerenciáveis pode facilitar a manutenção. Por exemplo, você pode criar workflows separados para build, testes e deploy, e depois chamar esses workflows menores a partir de um workflow principal. Isso permite que cada parte do processo seja desenvolvida e depurada independentemente.
 
-A reutilização de ações também é uma prática recomendada. Em vez de duplicar código, você pode criar ações personalizadas ou utilizar ações da comunidade que já estão disponíveis no GitHub Marketplace. Isso não só reduz a quantidade de código que você precisa manter, mas também aproveita soluções que já foram testadas e validadas por outros desenvolvedores.
+A reutilização de Actions também é uma prática recomendada. Em vez de duplicar código, você pode criar Actions personalizadas ou utilizar Actions da comunidade que já estão disponíveis no GitHub Marketplace. Isso não só reduz a quantidade de código que você precisa manter, mas também aproveita soluções que já foram testadas e validadas por outros desenvolvedores.
 
 Versionamento é outro aspecto crucial. Manter um histórico claro de mudanças nos arquivos de workflow e utilizar tags ou releases para marcar versões estáveis pode ajudar a rastrear alterações e reverter para versões anteriores, se necessário. Isso é particularmente útil em ambientes de produção onde a estabilidade é crítica.
 
@@ -874,7 +874,7 @@ Essas práticas de manutenção ajudam a garantir que seus workflows sejam robus
 
 Durante este tutorial, exploramos desde os conceitos básicos até tópicos avançados. Começamos com uma introdução ao GitHub Actions, entendendo seus benefícios e usos. Aprendemos sobre a estrutura de workflows, jobs e steps, além da configuração de arquivos YAML. Criamos um workflow simples e exploramos os diferentes eventos que podem disparar esses workflows, como push e pull_request.
 
-Também discutimos como utilizar ações disponíveis no GitHub Marketplace e como configurar diferentes executores e ambientes. A importância de proteger informações sensíveis com segredos e o uso de variáveis de ambiente foram outros pontos abordados. Além disso, exploramos como utilizar matrizes para testar múltiplas configurações e estratégias de build paralelas, e como acelerar builds com cache e gerenciar artefatos.
+Também discutimos como utilizar Actions disponíveis no GitHub Marketplace e como configurar diferentes executores e ambientes. A importância de proteger informações sensíveis com segredos e o uso de variáveis de ambiente foram outros pontos abordados. Além disso, exploramos como utilizar matrizes para testar múltiplas configurações e estratégias de build paralelas, e como acelerar builds com cache e gerenciar artefatos.
 
 Com gatilhos condicionais, aprendemos a usar lógica condicional nos jobs e steps, aumentando a flexibilidade dos workflows. Nos tópicos avançados, discutimos a criação de actions personalizadas, integração com outros serviços e APIs, e melhores práticas para otimização.
 
