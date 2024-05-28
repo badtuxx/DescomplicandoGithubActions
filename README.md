@@ -407,7 +407,7 @@ jobs:
     - name: Definindo uma variável no nível do step
       run: |
         STEP_VAR="Giropops no step-level"
-        echo "STEP_VAR=$STEP_VAR" >> $GITHUB_ENV
+        echo "STEP_VAR=$STEP_VAR"
 
     - name: Printando a variável no nível do step
       run: echo ${{ env.STEP_VAR }}
