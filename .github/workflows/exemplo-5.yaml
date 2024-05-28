@@ -1,0 +1,19 @@
+name: Exemplo maroto de Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout no Repo
+      uses: actions/checkout@v4
+
+    - name: Run a one-line script
+      run: echo "Giropops Strigus Girus!"
+
+    - name: Usando uma Action pre-built
+      uses: actions/setup-node@v4
+      with:
+        node-version: '14'

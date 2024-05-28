@@ -1,0 +1,14 @@
+name: Workflow do Giropops
+
+on: [push]
+
+jobs:
+  say_hello:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Run a one-line script
+      run: echo "Hello Giropops!"

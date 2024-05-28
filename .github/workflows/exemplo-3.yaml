@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout no Repo
+        uses: actions/checkout@v4
+      # Adicione outros steps aqui
