@@ -1,3 +1,4 @@
+name: Example Workflow
 on: [push]
 
 jobs:
