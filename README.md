@@ -96,10 +96,10 @@ jobs:
     - name: Checkout no Repo
       uses: actions/checkout@v4
 
-    - name: Run a one-line script
+    - name: Executando um comando de uma linha
       run: echo Hello Giropops!
 
-    - name: Run a multi-line script
+    - name: Executando um comando de várias linhas
       run: |
         echo Exemplo de mais um step,
         echo Giropops Strigus Girus.
