@@ -252,13 +252,13 @@ jobs:
       run: echo "Giropops Strigus Girus!"
 
     - name: Usando uma Action pre-built
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: '14'
 ```
 
 
-No exemplo acima, a ação `actions/setup-node@v2` é usada para configurar o ambiente Node.js. O campo `with` permite passar parâmetros para a ação, como a versão do Node.js a ser usada.
+No exemplo acima, a ação `actions/setup-node@v4` é usada para configurar o ambiente Node.js. O campo `with` permite passar parâmetros para a ação, como a versão do Node.js a ser usada.
 
 Você também pode criar suas próprias ações personalizadas para atender necessidades específicas do seu projeto. Para isso, é necessário definir um repositório de ações, que contém o código e a configuração necessários para a ação. Um exemplo de estrutura de repositório de ação em JavaScript pode ser:
 
@@ -346,7 +346,7 @@ Os ambientes de execução também podem ser personalizados através da instala�
 ```yaml
 steps:
   - name: Set up Node.js
-    uses: actions/setup-node@v2
+    uses: actions/setup-node@v4
     with:
       node-version: '14'
 ```
@@ -459,7 +459,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
